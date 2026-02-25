@@ -11,7 +11,7 @@ export const useFeed = () => {
   return useInfiniteQuery({
     queryKey: feedKeys.lists(),
     queryFn: ({ pageParam = 0 }) =>
-      feedService.getHomeFeed(userProfile?.id, POSTS_PER_PAGE, pageParam),
+      feedService.getHomeFeed(userProfile!.id, POSTS_PER_PAGE, pageParam),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === POSTS_PER_PAGE ? allPages.length * POSTS_PER_PAGE : undefined;
     },

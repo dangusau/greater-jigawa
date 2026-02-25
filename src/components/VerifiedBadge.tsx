@@ -13,7 +13,7 @@ const VerifiedBadge: React.FC<VerifiedBadgeProps> = ({
   showTooltip = false 
 }) => {
   const badgeSize = size;
-  const checkSize = size * 0.5;
+ 
   
   return (
     <div className={`relative inline-flex items-center justify-center ${className}`}>

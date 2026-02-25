@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Search, User, UserCheck, UserPlus, Store, AlertCircle, Clock } from 'lucide-react';
+import { ArrowLeft, Search, UserCheck, UserPlus, Clock } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
 import { messagingService } from '../../services/supabase/messaging';
 import { supabase } from '../../services/supabase';
@@ -172,7 +172,7 @@ const NewConversation: React.FC = () => {
     if (!user || userStatus !== 'verified') return;
     try {
       const validation = await messagingService.canStartConnectionChat(user.id, otherUserId);
-      if (!validation || !validation.can_start) {
+      if (!validation || !validation.canStart) {
         alert(validation?.reason || 'Cannot start conversation');
         return;
       }

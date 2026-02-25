@@ -10,7 +10,8 @@ interface EditJobModalProps {
   isLoading?: boolean;
 }
 
-const JOB_TYPES = ['full-time', 'part-time', 'contract', 'internship', 'remote'];
+const JOB_TYPES = ['full-time', 'part-time', 'contract', 'internship', 'remote'] as const;
+type JobType = typeof JOB_TYPES[number];
 
 const EditJobModal: React.FC<EditJobModalProps> = ({
   isOpen,
@@ -22,7 +23,7 @@ const EditJobModal: React.FC<EditJobModalProps> = ({
   const [title, setTitle] = useState(initialData.title);
   const [description, setDescription] = useState(initialData.description || '');
   const [salary, setSalary] = useState(initialData.salary || '');
-  const [jobType, setJobType] = useState(initialData.job_type);
+  const [jobType, setJobType] = useState<JobType>(initialData.job_type as JobType);
   const [location, setLocation] = useState(initialData.location || '');
   const [contactEmail, setContactEmail] = useState(initialData.contact_info?.email || '');
   const [contactPhone, setContactPhone] = useState(initialData.contact_info?.phone || '');
@@ -32,7 +33,7 @@ const EditJobModal: React.FC<EditJobModalProps> = ({
       setTitle(initialData.title);
       setDescription(initialData.description || '');
       setSalary(initialData.salary || '');
-      setJobType(initialData.job_type);
+      setJobType(initialData.job_type as JobType);
       setLocation(initialData.location || '');
       setContactEmail(initialData.contact_info?.email || '');
       setContactPhone(initialData.contact_info?.phone || '');
@@ -164,7 +165,7 @@ const EditJobModal: React.FC<EditJobModalProps> = ({
                   <select
                     id="edit-job-type"
                     value={jobType}
-                    onChange={(e) => setJobType(e.target.value)}
+                    onChange={(e) => setJobType(e.target.value as JobType)}
                     className="w-full pl-9 pr-3 py-2 bg-white border border-green-200 rounded-lg text-xs
                              focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-400
                              transition-all appearance-none cursor-pointer min-h-[36px]"

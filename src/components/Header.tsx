@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Bell, MessageCircle, User, HelpCircle, LogOut } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { supabase } from '../services/supabase';
@@ -16,12 +16,10 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ 
   userName = "Member", 
-  userAvatar,
   showBack = false,
   onBack
 }) => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [showProfileMenu, setShowProfileMenu] = useState(false);
   const [userInitials, setUserInitials] = useState('M');
