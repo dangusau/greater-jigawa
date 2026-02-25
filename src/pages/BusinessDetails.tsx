@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { ArrowLeft, Star, MapPin, Phone, Mail, Globe, Share2, User, AlertCircle } from 'lucide-react';
 import { businessService } from '../services/supabase/business';
 import { useBusinessMutations } from '../hooks/useBusinessMutations';
 import { businessKeys } from '../hooks/queryKeys';
-import type { Business, Review } from '../types/index';
 import { formatTimeAgo } from '../utils/formatters';
 import { useAuth } from '../contexts/AuthContext';
 import VerifiedBadge from '../components/VerifiedBadge';
