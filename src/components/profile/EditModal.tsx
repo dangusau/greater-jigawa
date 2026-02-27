@@ -10,10 +10,33 @@ interface EditModalProps {
 }
 
 const MARKET_AREAS = [
-  'Central / Old City', 'Sabon Gari / Kantin Kwari', 'Farm Center / Beirut',
-  'France Road', 'Zoo Road', 'Zaria Road', 'Dawanau', 'Sharada / Challawa',
-  'Hotoro', 'Gyadi-Gyadi / Tarauni', 'Jigawa Road', 'Mariri / Sheka',
-  'Bompai', 'Transport (Kano Line / Sabon Gari Park)', 'Others'
+  'Auyo',
+  'Babura',
+  'Biriniwa',
+  'Birnin Kudu',
+  'Buji',
+  'Dutse',
+  'Gagarawa',
+  'Garki',
+  'Gumel',
+  'Guri',
+  'Gwaram',
+  'Gwiwa',
+  'Hadejia',
+  'Jahun',
+  'Kafin Hausa',
+  'Kaugama',
+  'Kazaure',
+  'Kiri Kasama',
+  'Kiyawa',
+  'Maigatari',
+  'Malam Madori',
+  'Miga',
+  'Ringim',
+  'Roni',
+  'Sule Tankarkar',
+  'Taura',
+  'Yankwashi'
 ];
 
 export const EditModal: React.FC<EditModalProps> = ({ type, data, isOpen, onClose, onSave }) => {
