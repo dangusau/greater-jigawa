@@ -57,7 +57,7 @@ const ResetPassword: React.FC = () => {
           <div className="flex flex-col items-center mb-6">
             <div className="relative mb-3">
               <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20 overflow-hidden border border-green-100">
-                <div className="w-full h-full bg-gradient-to-br from-green-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <div className="w-full h-full bg-gradient-to-br from-green-600 to-green-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold text-base">GJBC</span>
                 </div>
               </div>
@@ -65,12 +65,12 @@ const ResetPassword: React.FC = () => {
             
             <div className="mb-4">
               <h1 className="text-2xl font-black text-gray-900 text-center">
-                <span className="bg-gradient-to-r from-green-600 to-indigo-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
                   GJBC
                 </span>
               </h1>
               <p className="text-xs text-gray-500 text-center font-medium mt-0.5">
-                Global Knowledge Business Community
+               Driving Economic Growth
               </p>
             </div>
           </div>
@@ -101,7 +101,7 @@ const ResetPassword: React.FC = () => {
         <div className="flex flex-col items-center mb-6">
           <div className="relative mb-3">
             <div className="w-16 h-16 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20 overflow-hidden border border-green-100">
-              <div className="w-full h-full bg-gradient-to-br from-green-600 to-indigo-600 rounded-lg flex items-center justify-center">
+              <div className="w-full h-full bg-gradient-to-br from-green-600 to-green-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-base">GJBC</span>
               </div>
             </div>
@@ -114,7 +114,7 @@ const ResetPassword: React.FC = () => {
               </span>
             </h1>
             <p className="text-xs text-gray-500 text-center font-medium mt-0.5">
-              Global Knowledge Business Community
+              Driving Economic Growth
             </p>
           </div>
         </div>
