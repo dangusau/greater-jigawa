@@ -63,7 +63,7 @@ const ForgotPassword: React.FC = () => {
   };
 
   const handleBackToLogin = () => {
-    navigate('/');
+    navigate('/Login');
   };
 
   return (
