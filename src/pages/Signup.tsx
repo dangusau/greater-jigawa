@@ -301,7 +301,7 @@ const SignUp: React.FC = () => {
             last_name: formData.lastName.trim(),
             phone: formData.phone.trim() || null,
           },
-          emailRedirectTo: `${window.location.origin}l/`,
+          emailRedirectTo: `${window.location.origin}/Login`,
         },
       });
       
@@ -368,7 +368,7 @@ const SignUp: React.FC = () => {
             setRedirectSeconds(prev => {
               if (prev <= 1) {
                 clearInterval(countdown);
-                navigate('/', { 
+                navigate('/Login', { 
                   state: { 
                     message: 'Please check your email to verify your account',
                     email: email 
@@ -764,7 +764,7 @@ const SignUp: React.FC = () => {
 
               {/* Login Link */}
               <button
-                onClick={() => navigate('/')}
+                onClick={() => navigate('/Login')}
                 className="w-full border border-gray-300 text-gray-700 font-bold py-2.5 rounded-lg hover:border-green-500 hover:text-green-600 hover:bg-green-50 transition-all duration-200 min-h-[44px]"
               >
                 Sign In Instead
