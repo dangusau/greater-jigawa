@@ -203,21 +203,33 @@ export interface UserVerificationStatus {
 }
 
 export const LOCATION_AXIS = [
-  'Central / Old City',
-  'Sabon Gari / Kantin Kwari',
-  'Farm Center / Beirut',
-  'France Road',
-  'Zoo Road',
-  'Zaria Road',
-  'Dawanau',
-  'Sharada / Challawa',
-  'Hotoro',
-  'Gyadi-Gyadi / Tarauni',
-  'Jigawa Road',
-  'Mariri / Sheka',
-  'Bompai',
-  'Transport (Kano Line / Sabon Gari Park)',
-  'Others'
+  'Auyo',
+  'Babura',
+  'Biriniwa',
+  'Birnin Kudu',
+  'Buji',
+  'Dutse',
+  'Gagarawa',
+  'Garki',
+  'Gumel',
+  'Guri',
+  'Gwaram',
+  'Gwiwa',
+  'Hadejia',
+  'Jahun',
+  'Kafin Hausa',
+  'Kaugama',
+  'Kazaure',
+  'Kiri Kasama',
+  'Kiyawa',
+  'Maigatari',
+  'Malam Madori',
+  'Miga',
+  'Ringim',
+  'Roni',
+  'Sule Tankarkar',
+  'Taura',
+  'Yankwashi'
 ] as const;
 
 // Profile related
@@ -268,11 +280,11 @@ export type MessageType = 'text' | 'image' | 'video' | 'audio';
 
 export interface Conversation {
   id: string;
-  conversation_id: string;       // same as id, kept for compatibility
+  conversation_id: string;       
   other_user_id: string;
   other_user_name: string;
   other_user_avatar?: string | null;
-  other_user_status?: 'verified' | 'member' | null;  // <-- add this line
+  other_user_status?: 'verified' | 'member' | null;  
   last_message?: string;
   last_message_at: string;       // ISO timestamp
   unread_count: number;
