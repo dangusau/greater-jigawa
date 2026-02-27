@@ -301,7 +301,7 @@ const SignUp: React.FC = () => {
             last_name: formData.lastName.trim(),
             phone: formData.phone.trim() || null,
           },
-          emailRedirectTo: `${window.location.origin}/`,
+          emailRedirectTo: `${window.location.origin}l/`,
         },
       });
       
@@ -368,7 +368,7 @@ const SignUp: React.FC = () => {
             setRedirectSeconds(prev => {
               if (prev <= 1) {
                 clearInterval(countdown);
-                navigate('/login', { 
+                navigate('/', { 
                   state: { 
                     message: 'Please check your email to verify your account',
                     email: email 
