@@ -39,6 +39,7 @@ import AdminBusinesses from './pages/admin/AdminBusinesses';
 import AdminJobsEvents from './pages/admin/AdminJobsEvents';
 import AdminTickets from './pages/admin/AdminTickets';
 import AdminAnnouncements from './pages/admin/AdminAnnouncements';
+import AdminVerificationRequests from './pages/admin/AdminVerificationRequests';
 import AdminManagement from './pages/admin/AdminManagement';
 
 // Presence tracker component – must be inside AuthProvider
@@ -106,6 +107,7 @@ function App() {
               <Route path="jobs-events" element={<AdminJobsEvents />} />
               <Route path="tickets" element={<AdminTickets />} />
               <Route path="announcements" element={<AdminAnnouncements />} />
+              <Route path="verifications" element={<AdminVerificationRequests />} />
               <Route path="manage-admins" element={<AdminManagement />} />
             </Route>
 
