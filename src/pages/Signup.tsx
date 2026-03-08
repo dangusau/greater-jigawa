@@ -672,12 +672,17 @@ const SignUp: React.FC = () => {
                     Account Type *
                   </label>
                   
-                  {/* Note */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 text-xs text-blue-800">
-                    <p className="font-bold mb-1">Note:</p>
-                    <p>
-                      GJBC is a feature‑rich platform that allows users to socialise, buy/sell and showcase their products to the world. It showcases reputable and verified businesses in Kano to increase brand trust. Directly communicate with your customers through GJBC Chat system. To enjoy the full features of the platform, a <span className="font-bold">Verified Member</span> is highly recommended.
-                    </p>
+                  {/* Professional Note with Bullet Points - Green Theme */}
+                  <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-xs text-green-800">
+                    <p className="font-bold text-sm mb-2">Why become a Verified Member?</p>
+                    <ul className="space-y-1.5 list-disc pl-4">
+                      <li><span className="font-semibold">Enhanced Trust & Credibility</span> – Get the verified badge to stand out as a reputable business.</li>
+                      <li><span className="font-semibold">Full Platform Access</span> – Unlock all features including buying, selling, and social networking.</li>
+                      <li><span className="font-semibold">Direct Customer Communication</span> – Use GJBC Chat to engage with customers instantly.</li>
+                      <li><span className="font-semibold">Showcase Your Products</span> – Promote your products to a wider audience with premium visibility.</li>
+                      <li><span className="font-semibold">Priority Support</span> – Receive faster assistance from our team.</li>
+                    </ul>
+                    <p className="mt-2 text-green-700">Join our community of trusted businesses in Kano and beyond!</p>
                   </div>
 
                   <div className="flex gap-4 mt-2">
@@ -716,12 +721,12 @@ const SignUp: React.FC = () => {
                       <p className="font-semibold text-green-800">Annual Fee: ₦10,000</p>
                     </div>
 
-                    {/* Bank Details */}
+                    {/* Bank Details - Updated with real info from image */}
                     <div className="space-y-1 text-xs">
-                      <p><span className="font-medium">Bank Name:</span> GTBank</p>
-                      <p><span className="font-medium">Account Name:</span> Greater Jigawa Business Community</p>
-                      <p><span className="font-medium">Account Number:</span> 0123456789</p>
-                      <p><span className="font-medium">WhatsApp:</span> <a href="https://wa.me/2348000000000" className="text-green-600 underline" target="_blank" rel="noopener">+234 800 000 0000</a></p>
+                      <p><span className="font-medium">Bank Name:</span> Kayi Microfinance Bank</p>
+                      <p><span className="font-medium">Account Name:</span> Greater Jigawa</p>
+                      <p><span className="font-medium">Account Number:</span> 4102542176</p>
+                      <p><span className="font-medium">WhatsApp:</span> <a href="https://wa.me/2348023104333" className="text-green-600 underline" target="_blank" rel="noopener">08023104333</a></p>
                     </div>
 
                     {/* Receipt Upload */}
