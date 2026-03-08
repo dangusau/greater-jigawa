@@ -99,6 +99,9 @@ const StatusModal: React.FC<{
                   <p className="text-xs text-gray-700">
                     <span className="font-semibold">⚠️ Be patient</span> before trying to sign up again.
                   </p>
+                  <p className="text-xs text-gray-700">
+                    <span className="font-semibold"> Verified User?</span> Verification can take upto 24hrs, after that contact support.
+                  </p>
                 </div>
               </>
             )}
@@ -437,7 +440,7 @@ const SignUp: React.FC = () => {
               navigate('/Login', { 
                 state: { 
                   message: userType === 'verified' 
-                    ? 'Your account was created. Verification request submitted for admin review.'
+                    ? 'Your account was created. Verification request submitted for review.'
                     : 'Please check your email to verify your account',
                   email: email 
                 } 
@@ -682,7 +685,7 @@ const SignUp: React.FC = () => {
                       <li><span className="font-semibold">Showcase Your Products</span> – Promote your products to a wider audience with premium visibility.</li>
                       <li><span className="font-semibold">Priority Support</span> – Receive faster assistance from our team.</li>
                     </ul>
-                    <p className="mt-2 text-green-700">Join our community of trusted businesses in Kano and beyond!</p>
+                    <p className="mt-2 text-green-700">Send a copy of your receipt to the provided Whatsapp Number</p>
                   </div>
 
                   <div className="flex gap-4 mt-2">
