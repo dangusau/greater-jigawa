@@ -49,6 +49,7 @@ const AdminLayout: React.FC = () => {
     { to: '/admin/jobs-events', icon: Calendar, label: 'Explore' },
     { to: '/admin/tickets', icon: Ticket, label: 'Support' },
     { to: '/admin/announcements', icon: Megaphone, label: 'Announcements' },
+     { to: '/admin/verifications', icon: Megaphone, label: 'Verifications' },
     { to: '/admin/manage-admins', icon: Settings, label: 'Admin Management' },
   ];
 
