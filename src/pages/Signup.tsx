@@ -1,28 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { 
-  Mail, 
-  Lock, 
-  Eye, 
-  EyeOff, 
-  ArrowRight, 
-  Phone, 
-  User, 
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  Phone,
+  User,
   CheckCircle,
   AlertCircle,
   Loader2,
   Shield,
   Building,
   Smartphone,
-  Check,
   X,
-  Clock,
   UserCheck,
   Upload
 } from 'lucide-react';
 import { supabase } from '../services/supabase';
 
-// Interface for form data
 interface FormData {
   firstName: string;
   lastName: string;
@@ -33,7 +30,7 @@ interface FormData {
   agreeToTerms: boolean;
 }
 
-// ===================== StatusModal Component =====================
+// Status Modal Component
 const StatusModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
@@ -44,20 +41,21 @@ const StatusModal: React.FC<{
   if (!isOpen) return null;
 
   const isAlreadyRegistered = type === 'already_registered';
-  
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 bg-black/50 backdrop-blur-sm">
       <div className="relative w-full max-w-md bg-white rounded-xl shadow-lg border border-gray-200">
-        {/* Modal Header */}
         <div className="p-4 border-b border-gray-100">
           <div className="flex items-center justify-center mb-3">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center border ${
-              isAlreadyRegistered 
-                ? 'bg-green-100 border-green-200' 
-                : 'bg-green-100 border-green-200'
-            }`}>
+            <div
+              className={`w-12 h-12 rounded-full flex items-center justify-center border ${
+                isAlreadyRegistered
+                  ? 'bg-blue-100 border-blue-200'
+                  : 'bg-green-100 border-green-200'
+              }`}
+            >
               {isAlreadyRegistered ? (
-                <UserCheck className="text-green-600" size={24} />
+                <UserCheck className="text-blue-600" size={24} />
               ) : (
                 <CheckCircle className="text-green-600" size={24} />
               )}
@@ -68,46 +66,46 @@ const StatusModal: React.FC<{
           </h3>
         </div>
 
-        {/* Modal Body */}
         <div className="p-4">
           <div className="text-center mb-4">
             {isAlreadyRegistered ? (
               <>
                 <p className="text-gray-600 mb-2 text-sm">
-                  An account with email <span className="font-semibold text-green-600">{email}</span> already exists.
+                  An account with email <span className="font-semibold text-blue-600">{email}</span> already exists.
                 </p>
-                <p className="text-gray-600 text-sm">
-                  Redirecting you to login...
-                </p>
+                <p className="text-gray-600 text-sm">Redirecting you to login...</p>
               </>
             ) : (
               <>
-                <p className="text-gray-600 mb-2 text-sm">
-                  A verification link has been sent to:
-                </p>
+                <p className="text-gray-600 mb-2 text-sm">A verification link has been sent to:</p>
                 <p className="font-semibold text-green-600 text-base mb-3">{email}</p>
                 <div className="text-left bg-green-50 border border-green-200 rounded-lg p-3 mb-3">
                   <p className="text-xs text-gray-700 mb-1">
-                    <span className="font-semibold">📧 Check your inbox or spam folder</span> for an email titled <span className="font-mono bg-green-100 px-1 py-0.5 rounded">"Supabase Authentication"</span>
+                    <span className="font-semibold">📧 Check your inbox or spam folder</span> for an email titled{' '}
+                    <span className="font-mono bg-green-100 px-1 py-0.5 rounded">
+                      "Greater Jigawa Business Council Registration"
+                    </span>
                   </p>
                   <p className="text-xs text-gray-700 mb-1">
-                    <span className="font-semibold">🔗 Click the link</span> to verify your email. You'll be redirected to login.
+                    <span className="font-semibold">🔗 Click the link</span> to verify your email. You'll be redirected
+                    to login.
                   </p>
                   <p className="text-xs text-gray-700 mb-1">
-                    <span className="font-semibold">⏱️ Link expires in 10 minutes.</span> Sometimes emails take a little longer to arrive.
+                    <span className="font-semibold">⏱️ Link expires in 10 minutes.</span> Sometimes emails take a little
+                    longer to arrive.
                   </p>
                   <p className="text-xs text-gray-700">
                     <span className="font-semibold">⚠️ Be patient</span> before trying to sign up again.
                   </p>
                   <p className="text-xs text-gray-700">
-                    <span className="font-semibold"> Verified User?</span> Verification can take upto 24hrs, after that contact support.
+                    <span className="font-semibold">Verified User?</span> After verification, you will be prompted to
+                    complete your application.
                   </p>
                 </div>
               </>
             )}
           </div>
 
-          {/* Progress Bar */}
           <div className="mt-4">
             <div className="flex items-center justify-between mb-1">
               <span className="text-xs font-medium text-gray-700">
@@ -116,12 +114,12 @@ const StatusModal: React.FC<{
               <span className="text-xs font-medium text-green-600">{redirectSeconds}s</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-1.5">
-              <div 
+              <div
                 className={`h-1.5 rounded-full ${
-                  isAlreadyRegistered ? 'bg-green-500' : 'bg-green-500'
+                  isAlreadyRegistered ? 'bg-blue-500' : 'bg-green-500'
                 }`}
-                style={{ 
-                  width: `${100 - (redirectSeconds / (isAlreadyRegistered ? 3 : 10) * 100)}%` 
+                style={{
+                  width: `${100 - (redirectSeconds / (isAlreadyRegistered ? 4 : 10)) * 100}%`,
                 }}
               />
             </div>
@@ -132,11 +130,10 @@ const StatusModal: React.FC<{
   );
 };
 
-// ===================== Main SignUp Component =====================
+// Main SignUp Component
 const SignUp: React.FC = () => {
   const navigate = useNavigate();
-  
-  // Form state
+
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -146,27 +143,20 @@ const SignUp: React.FC = () => {
     confirmPassword: '',
     agreeToTerms: false,
   });
-  
-  // NEW: User type state
+
   const [userType, setUserType] = useState<'regular' | 'verified'>('regular');
-  // NEW: Receipt upload state
   const [receiptFile, setReceiptFile] = useState<File | null>(null);
-  const [receiptUploading, setReceiptUploading] = useState(false);
-  
-  // UI state
+  const [isStoringReceipt, setIsStoringReceipt] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [validationErrors, setValidationErrors] = useState<{[key: string]: string}>({});
+  const [validationErrors, setValidationErrors] = useState<{ [key: string]: string }>({});
   const [serverError, setServerError] = useState<string | null>(null);
   const [passwordStrength, setPasswordStrength] = useState(0);
-  
-  // Modal state
   const [showStatusModal, setShowStatusModal] = useState(false);
   const [modalType, setModalType] = useState<'already_registered' | 'new_user_success'>('new_user_success');
   const [redirectSeconds, setRedirectSeconds] = useState(10);
   const [modalEmail, setModalEmail] = useState('');
 
-  // Handle input changes
   const handleInputChange = (field: keyof FormData, value: string | boolean) => {
     if (field === 'firstName' || field === 'lastName') {
       const stringValue = value as string;
@@ -176,7 +166,7 @@ const SignUp: React.FC = () => {
     } else {
       setFormData(prev => ({ ...prev, [field]: value }));
     }
-    
+
     if (validationErrors[field]) {
       setValidationErrors(prev => {
         const newErrors = { ...prev };
@@ -184,10 +174,8 @@ const SignUp: React.FC = () => {
         return newErrors;
       });
     }
-    
-    if (serverError) {
-      setServerError(null);
-    }
+
+    if (serverError) setServerError(null);
 
     if (field === 'password') {
       const password = value as string;
@@ -199,34 +187,19 @@ const SignUp: React.FC = () => {
     }
   };
 
-  // Validate Nigerian phone number
   const validateNigerianPhone = (phone: string): boolean => {
     const cleaned = phone.replace(/[^\d+]/g, '');
-    
-    if (!cleaned.startsWith('+234')) {
-      return false;
-    }
-    
-    if (cleaned.length !== 14) {
-      return false;
-    }
-    
+    if (!cleaned.startsWith('+234')) return false;
+    if (cleaned.length !== 14) return false;
     const remainingDigits = cleaned.substring(4);
-    if (!/^[0-9]{10}$/.test(remainingDigits)) {
-      return false;
-    }
-    
-    if (remainingDigits.charAt(0) === '0') {
-      return false;
-    }
-    
+    if (!/^[0-9]{10}$/.test(remainingDigits)) return false;
+    if (remainingDigits.charAt(0) === '0') return false;
     return true;
   };
 
-  // Validate form
   const validateForm = (): boolean => {
-    const errors: {[key: string]: string} = {};
-    
+    const errors: { [key: string]: string } = {};
+
     if (!formData.firstName.trim()) {
       errors.firstName = 'First name is required';
     } else if (formData.firstName.length < 2) {
@@ -234,7 +207,7 @@ const SignUp: React.FC = () => {
     } else if (!/^[a-zA-Z\s\-]+$/.test(formData.firstName)) {
       errors.firstName = 'First name can only contain letters, spaces, and hyphens';
     }
-    
+
     if (!formData.lastName.trim()) {
       errors.lastName = 'Last name is required';
     } else if (formData.lastName.length < 2) {
@@ -242,20 +215,20 @@ const SignUp: React.FC = () => {
     } else if (!/^[a-zA-Z\s\-]+$/.test(formData.lastName)) {
       errors.lastName = 'Last name can only contain letters, spaces, and hyphens';
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!formData.email) {
       errors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
       errors.email = 'Please enter a valid email address';
     }
-    
+
     if (formData.phone) {
       if (!validateNigerianPhone(formData.phone)) {
         errors.phone = 'Phone must start with +234 and be 14 digits total (e.g., +2348000000000)';
       }
     }
-    
+
     if (!formData.password) {
       errors.password = 'Password is required';
     } else if (formData.password.length < 6) {
@@ -265,22 +238,21 @@ const SignUp: React.FC = () => {
     } else if (!/(?=.*[0-9])/.test(formData.password)) {
       errors.password = 'Password must contain at least one number';
     }
-    
+
     if (!formData.confirmPassword) {
       errors.confirmPassword = 'Please confirm your password';
     } else if (formData.password !== formData.confirmPassword) {
       errors.confirmPassword = 'Passwords do not match';
     }
-    
+
     if (!formData.agreeToTerms) {
       errors.agreeToTerms = 'You must agree to the terms and conditions';
     }
-    
+
     setValidationErrors(errors);
     return Object.keys(errors).length === 0;
   };
 
-  // Check if user exists
   const checkUserExists = async (email: string): Promise<boolean> => {
     try {
       const { data } = await supabase
@@ -288,7 +260,6 @@ const SignUp: React.FC = () => {
         .select('email')
         .eq('email', email.toLowerCase())
         .maybeSingle();
-      
       return !!data;
     } catch (error) {
       if (error instanceof Error && error.message.includes('network')) {
@@ -298,7 +269,6 @@ const SignUp: React.FC = () => {
     }
   };
 
-  // Create new user (modified to return user)
   const createNewUser = async (): Promise<{ user: any; session: any }> => {
     try {
       const { data, error } = await supabase.auth.signUp({
@@ -310,13 +280,11 @@ const SignUp: React.FC = () => {
             last_name: formData.lastName.trim(),
             phone: formData.phone.trim() || null,
           },
-          emailRedirectTo: `${window.location.origin}/Login`,
+          emailRedirectTo: `${window.location.origin}/login`,
         },
       });
-      
       if (error) throw error;
-      return data; // contains user and session
-      
+      return data;
     } catch (error: any) {
       if (error.message?.includes('network') || error.message?.includes('Failed to fetch')) {
         console.error('Critical network error creating user');
@@ -325,125 +293,97 @@ const SignUp: React.FC = () => {
     }
   };
 
-  // NEW: Upload receipt and create verification request
-  const submitVerificationRequest = async (userId: string) => {
-    if (!receiptFile) throw new Error('No receipt file selected');
-
-    setReceiptUploading(true);
-    try {
-      // 1. Upload file to storage bucket (e.g., 'verification-receipts')
-      const fileExt = receiptFile.name.split('.').pop();
-      const fileName = `receipt-${userId}-${Date.now()}.${fileExt}`;
-      const filePath = `${userId}/${fileName}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from('verification-receipts')
-        .upload(filePath, receiptFile);
-
-      if (uploadError) throw uploadError;
-
-      // 2. Get public URL (if bucket is public) or store path
-      const { data: urlData } = supabase.storage
-        .from('verification-receipts')
-        .getPublicUrl(filePath);
-      const receiptUrl = urlData.publicUrl;
-
-      // 3. Insert record into verified_user_requests table
-      const { error: insertError } = await supabase
-        .from('verified_user_requests')
-        .insert({
-          user_id: userId,
-          receipt_url: receiptUrl,
-          status: 'pending',
-          created_at: new Date().toISOString(),
-        });
-
-      if (insertError) throw insertError;
-
-    } catch (error: any) {
-      console.error('Verification request failed:', error);
-      throw new Error('Failed to submit verification request. Please contact support.');
-    } finally {
-      setReceiptUploading(false);
-    }
+  const storePendingVerification = (userId: string, file: File): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        try {
+          const base64data = reader.result as string;
+          localStorage.setItem(
+            'pendingVerification',
+            JSON.stringify({
+              userId,
+              receiptData: base64data,
+              fileName: file.name,
+              fileType: file.type,
+            })
+          );
+          resolve();
+        } catch (err) {
+          reject(new Error('Failed to store receipt locally.'));
+        }
+      };
+      reader.onerror = () => reject(new Error('Failed to read receipt file.'));
+      reader.readAsDataURL(file);
+    });
   };
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Validate main form
-    if (!validateForm()) return;
 
-    // Additional validation for verified user
+    if (!validateForm()) return;
     if (userType === 'verified' && !receiptFile) {
-      setValidationErrors(prev => ({
-        ...prev,
-        receipt: 'Please upload your payment receipt'
-      }));
+      setValidationErrors(prev => ({ ...prev, receipt: 'Please upload your payment receipt' }));
       return;
     }
-    
+
     setIsLoading(true);
     setServerError(null);
-    
+
     try {
       const email = formData.email.trim();
-      
-      // Check if user already exists
       const userExists = await checkUserExists(email);
-      
+
       if (userExists) {
-        // Show "already registered" modal
         setModalEmail(email);
         setModalType('already_registered');
         setRedirectSeconds(3);
         setShowStatusModal(true);
-        
-        // Start countdown for redirect
+
         const countdown = setInterval(() => {
           setRedirectSeconds(prev => {
             if (prev <= 1) {
               clearInterval(countdown);
-              navigate('/login', { 
-                state: { prefilledEmail: email } 
-              });
+              navigate('/login', { state: { prefilledEmail: email } });
               return 0;
             }
             return prev - 1;
           });
         }, 1000);
       } else {
-        // Create new user
         const { user } = await createNewUser();
-        
-        // If user is verified, submit verification request
-        if (userType === 'verified' && user) {
+
+        if (userType === 'verified' && user && receiptFile) {
+          setIsStoringReceipt(true);
           try {
-            await submitVerificationRequest(user.id);
-          } catch (verificationError: any) {
-            setServerError(verificationError.message || 'Verification request failed. Your account was created, but please contact support to complete verification.');
+            await storePendingVerification(user.id, receiptFile);
+          } catch (storageError: any) {
+            setServerError(
+              storageError.message || 'Failed to store receipt. Your account was created, but please contact support.'
+            );
+          } finally {
+            setIsStoringReceipt(false);
           }
         }
 
-        // Show success modal
         setModalEmail(email);
         setModalType('new_user_success');
         setRedirectSeconds(10);
         setShowStatusModal(true);
-        
-        // Start countdown
+
         const countdown = setInterval(() => {
           setRedirectSeconds(prev => {
             if (prev <= 1) {
               clearInterval(countdown);
-              navigate('/Login', { 
-                state: { 
-                  message: userType === 'verified' 
-                    ? 'Your account was created. Verification request submitted for review.'
-                    : 'Please check your email to verify your account',
-                  email: email 
-                } 
+              navigate('/login', {
+                state: {
+                  message:
+                    userType === 'verified'
+                      ? 'Your account was created. After email verification, please log in to complete your verification request.'
+                      : 'Please check your email to verify your account',
+                  email,
+                  messageType: 'success',
+                },
               });
               return 0;
             }
@@ -451,10 +391,8 @@ const SignUp: React.FC = () => {
           });
         }, 1000);
       }
-      
     } catch (error: any) {
       let userMessage = error.message || 'Registration failed. Please try again.';
-      
       if (error.message?.includes('already registered') || error.message?.includes('User already registered')) {
         userMessage = 'This email is already registered. Please try logging in.';
       } else if (error.message?.includes('rate limit')) {
@@ -462,9 +400,7 @@ const SignUp: React.FC = () => {
       } else if (error.message?.includes('network') || error.message?.includes('Failed to fetch')) {
         userMessage = 'Network error. Please check your connection and try again.';
       }
-      
       setServerError(userMessage);
-      
     } finally {
       setIsLoading(false);
     }
@@ -472,7 +408,6 @@ const SignUp: React.FC = () => {
 
   return (
     <>
-      {/* Status Modal */}
       <StatusModal
         isOpen={showStatusModal}
         onClose={() => setShowStatusModal(false)}
@@ -480,25 +415,21 @@ const SignUp: React.FC = () => {
         type={modalType}
         redirectSeconds={redirectSeconds}
       />
-      
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-green-50 flex flex-col justify-center items-center px-3 py-6 safe-area">
-        {/* Background Elements */}
+
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-green-50 flex flex-col justify-center items-center px-3 py-6 safe-area overflow-x-hidden relative">
         <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-green-600/10 to-transparent" />
-        <div className="absolute top-1/4 right-0 w-48 h-48 bg-blue-500/5 rounded-full blur-3xl overflow-hidden" />
-        <div className="absolute bottom-1/4 left-0 w-48 h-48 bg-blue-400/5 rounded-full blur-3xl overflow-hidden" />
-        
-        {/* Main Container */}
+        <div className="absolute top-1/4 -right-12 w-48 h-48 bg-green-500/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 -left-12 w-48 h-48 bg-green-400/5 rounded-full blur-3xl" />
+
         <div className="w-full max-w-md relative z-10">
-          {/* Header */}
           <div className="flex flex-col items-center mb-6">
-            {/* Logo Container */}
             <div className="relative mb-3">
               <div className="w-20 h-20 rounded-xl flex items-center justify-center shadow-lg shadow-green-500/20 overflow-hidden border border-green-100">
-                <img 
-                  src="/GJBCLOGO.png" 
-                  alt="GJBC Logo" 
+                <img
+                  src="/GJBCLOGO.png"
+                  alt="GJBC Logo"
                   className="w-full h-full object-contain p-1"
-                  onError={(e) => {
+                  onError={e => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     target.parentElement!.innerHTML = `
@@ -510,8 +441,7 @@ const SignUp: React.FC = () => {
                 />
               </div>
             </div>
-            
-            {/* GJBC Title */}
+
             <div className="mb-4">
               <h1 className="text-2xl font-black text-gray-900 text-center">
                 <span className="bg-gradient-to-r from-green-600 to-green-600 bg-clip-text text-transparent">
@@ -522,8 +452,7 @@ const SignUp: React.FC = () => {
                 Driving Economic Growth
               </p>
             </div>
-            
-            {/* Form Header */}
+
             <div className="text-center mb-2">
               <h2 className="text-xl font-bold text-gray-900 mb-1">Create Your Account</h2>
               <p className="text-xs text-gray-500 font-medium max-w-xs mx-auto">
@@ -532,10 +461,8 @@ const SignUp: React.FC = () => {
             </div>
           </div>
 
-          {/* Signup Card */}
           <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-gray-200/80 overflow-hidden mb-4">
             <div className="p-4">
-              {/* Server Error Display */}
               {serverError && (
                 <div className="mb-4 p-3 bg-red-50 border border-red-100 rounded-lg">
                   <div className="flex items-start gap-2">
@@ -547,15 +474,10 @@ const SignUp: React.FC = () => {
                 </div>
               )}
 
-              {/* Signup Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Name Fields */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {/* First Name */}
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-gray-700 pl-1">
-                      First Name *
-                    </label>
+                    <label className="block text-xs font-medium text-gray-700 pl-1">First Name *</label>
                     <div className="relative">
                       <div className="absolute left-0 top-0 bottom-0 w-10 flex items-center justify-center">
                         <User className="text-gray-400" size={16} />
@@ -563,7 +485,7 @@ const SignUp: React.FC = () => {
                       <input
                         type="text"
                         value={formData.firstName}
-                        onChange={(e) => handleInputChange('firstName', e.target.value)}
+                        onChange={e => handleInputChange('firstName', e.target.value)}
                         className={`w-full pl-10 pr-3 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                           validationErrors.firstName
                             ? 'border-red-300 focus:ring-red-500/20'
@@ -581,15 +503,12 @@ const SignUp: React.FC = () => {
                     )}
                   </div>
 
-                  {/* Last Name */}
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-medium text-gray-700 pl-1">
-                      Last Name *
-                    </label>
+                    <label className="block text-xs font-medium text-gray-700 pl-1">Last Name *</label>
                     <input
                       type="text"
                       value={formData.lastName}
-                      onChange={(e) => handleInputChange('lastName', e.target.value)}
+                      onChange={e => handleInputChange('lastName', e.target.value)}
                       className={`w-full px-3 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                         validationErrors.lastName
                           ? 'border-red-300 focus:ring-red-500/20'
@@ -607,11 +526,8 @@ const SignUp: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Email */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-gray-700 pl-1">
-                    Email *
-                  </label>
+                  <label className="block text-xs font-medium text-gray-700 pl-1">Email *</label>
                   <div className="relative">
                     <div className="absolute left-0 top-0 bottom-0 w-10 flex items-center justify-center">
                       <Mail className="text-gray-400" size={16} />
@@ -619,7 +535,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="email"
                       value={formData.email}
-                      onChange={(e) => handleInputChange('email', e.target.value)}
+                      onChange={e => handleInputChange('email', e.target.value)}
                       className={`w-full pl-10 pr-3 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                         validationErrors.email
                           ? 'border-red-300 focus:ring-red-500/20'
@@ -637,11 +553,8 @@ const SignUp: React.FC = () => {
                   )}
                 </div>
 
-                {/* Phone */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-gray-700 pl-1">
-                    Phone Number (Optional)
-                  </label>
+                  <label className="block text-xs font-medium text-gray-700 pl-1">Phone Number (Optional)</label>
                   <div className="relative">
                     <div className="absolute left-0 top-0 bottom-0 w-10 flex items-center justify-center">
                       <Phone className="text-gray-400" size={16} />
@@ -649,7 +562,7 @@ const SignUp: React.FC = () => {
                     <input
                       type="tel"
                       value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      onChange={e => handleInputChange('phone', e.target.value)}
                       className={`w-full pl-10 pr-3 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                         validationErrors.phone
                           ? 'border-red-300 focus:ring-red-500/20'
@@ -669,13 +582,9 @@ const SignUp: React.FC = () => {
                   </p>
                 </div>
 
-                {/* ===== NEW: User Type Selection ===== */}
                 <div className="space-y-2">
-                  <label className="block text-xs font-medium text-gray-700 pl-1">
-                    Account Type *
-                  </label>
-                  
-                  {/* Professional Note with Bullet Points - Green Theme */}
+                  <label className="block text-xs font-medium text-gray-700 pl-1">Account Type *</label>
+
                   <div className="bg-green-50 border border-green-200 rounded-lg p-4 text-xs text-green-800">
                     <p className="font-bold text-sm mb-2">Why become a Verified Member?</p>
                     <ul className="space-y-1.5 list-disc pl-4">
@@ -685,7 +594,9 @@ const SignUp: React.FC = () => {
                       <li><span className="font-semibold">Showcase Your Products</span> – Promote your products to a wider audience with premium visibility.</li>
                       <li><span className="font-semibold">Priority Support</span> – Receive faster assistance from our team.</li>
                     </ul>
-                    <p className="mt-2 text-green-700">Send a copy of your receipt to the provided Whatsapp Number</p>
+                    <p className="mt-2 text-green-700">
+                      After payment, upload your receipt and complete signup. You'll submit it after email verification.
+                    </p>
                   </div>
 
                   <div className="flex gap-4 mt-2">
@@ -714,17 +625,14 @@ const SignUp: React.FC = () => {
                   </div>
                 </div>
 
-                {/* ===== NEW: Verified User Fields (conditional) ===== */}
                 {userType === 'verified' && (
                   <div className="space-y-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
                     <h3 className="text-sm font-bold text-gray-800">Verified Member Application</h3>
-                    
-                    {/* Fee Display */}
+
                     <div className="bg-green-50 border border-green-200 rounded-lg p-2 text-xs">
                       <p className="font-semibold text-green-800">Annual Fee: ₦10,000</p>
                     </div>
 
-                    {/* Bank Details - Updated with real info from image */}
                     <div className="space-y-1 text-xs">
                       <p><span className="font-medium">Bank Name:</span> Kayi Microfinance Bank</p>
                       <p><span className="font-medium">Account Name:</span> Greater Jigawa</p>
@@ -732,16 +640,13 @@ const SignUp: React.FC = () => {
                       <p><span className="font-medium">WhatsApp:</span> <a href="https://wa.me/2348023104333" className="text-green-600 underline" target="_blank" rel="noopener">08023104333</a></p>
                     </div>
 
-                    {/* Receipt Upload */}
                     <div className="space-y-1.5">
-                      <label className="block text-xs font-medium text-gray-700">
-                        Upload Payment Receipt *
-                      </label>
+                      <label className="block text-xs font-medium text-gray-700">Upload Payment Receipt *</label>
                       <div className="relative">
                         <input
                           type="file"
                           accept="image/*,.pdf"
-                          onChange={(e) => setReceiptFile(e.target.files?.[0] || null)}
+                          onChange={e => setReceiptFile(e.target.files?.[0] || null)}
                           className="w-full text-xs border border-gray-300 rounded-lg p-2 file:mr-2 file:py-1 file:px-3 file:rounded file:border-0 file:text-xs file:bg-green-50 file:text-green-700 hover:file:bg-green-100"
                         />
                       </div>
@@ -758,12 +663,9 @@ const SignUp: React.FC = () => {
                   </div>
                 )}
 
-                {/* Password */}
                 <div className="space-y-2">
                   <div className="flex items-center justify-between pl-1">
-                    <label className="block text-xs font-medium text-gray-700">
-                      Password *
-                    </label>
+                    <label className="block text-xs font-medium text-gray-700">Password *</label>
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
@@ -772,7 +674,7 @@ const SignUp: React.FC = () => {
                       {showPassword ? 'Hide' : 'Show'}
                     </button>
                   </div>
-                  
+
                   <div className="relative">
                     <div className="absolute left-0 top-0 bottom-0 w-10 flex items-center justify-center">
                       <Lock className="text-gray-400" size={16} />
@@ -780,7 +682,7 @@ const SignUp: React.FC = () => {
                     <input
                       type={showPassword ? 'text' : 'password'}
                       value={formData.password}
-                      onChange={(e) => handleInputChange('password', e.target.value)}
+                      onChange={e => handleInputChange('password', e.target.value)}
                       className={`w-full pl-10 pr-10 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                         validationErrors.password
                           ? 'border-red-300 focus:ring-red-500/20'
@@ -800,31 +702,37 @@ const SignUp: React.FC = () => {
                     </div>
                   </div>
 
-                  {/* Password Strength */}
                   {formData.password && (
                     <div className="space-y-1.5">
                       <div className="flex items-center justify-between text-xs">
                         <span className="text-gray-600">Password strength:</span>
-                        <span className={`font-medium ${
-                          passwordStrength < 50 ? 'text-red-600' :
-                          passwordStrength < 80 ? 'text-yellow-600' : 'text-green-600'
-                        }`}>
-                          {passwordStrength < 50 ? 'Weak' :
-                           passwordStrength < 80 ? 'Good' : 'Strong'}
+                        <span
+                          className={`font-medium ${
+                            passwordStrength < 50
+                              ? 'text-red-600'
+                              : passwordStrength < 80
+                              ? 'text-yellow-600'
+                              : 'text-green-600'
+                          }`}
+                        >
+                          {passwordStrength < 50 ? 'Weak' : passwordStrength < 80 ? 'Good' : 'Strong'}
                         </span>
                       </div>
                       <div className="w-full bg-gray-200 rounded-full h-1.5">
-                        <div 
+                        <div
                           className={`h-1.5 rounded-full ${
-                            passwordStrength < 50 ? 'bg-red-500' :
-                            passwordStrength < 80 ? 'bg-yellow-500' : 'bg-green-500'
+                            passwordStrength < 50
+                              ? 'bg-red-500'
+                              : passwordStrength < 80
+                              ? 'bg-yellow-500'
+                              : 'bg-green-500'
                           }`}
                           style={{ width: `${passwordStrength}%` }}
                         />
                       </div>
                     </div>
                   )}
-                  
+
                   {validationErrors.password && (
                     <p className="text-xs text-red-600 flex items-center gap-1">
                       <X size={10} />
@@ -833,15 +741,12 @@ const SignUp: React.FC = () => {
                   )}
                 </div>
 
-                {/* Confirm Password */}
                 <div className="space-y-1.5">
-                  <label className="block text-xs font-medium text-gray-700 pl-1">
-                    Confirm Password *
-                  </label>
+                  <label className="block text-xs font-medium text-gray-700 pl-1">Confirm Password *</label>
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={formData.confirmPassword}
-                    onChange={(e) => handleInputChange('confirmPassword', e.target.value)}
+                    onChange={e => handleInputChange('confirmPassword', e.target.value)}
                     className={`w-full px-3 py-2.5 bg-white border rounded-lg text-sm focus:outline-none focus:ring-1 focus:border-green-500 ${
                       validationErrors.confirmPassword
                         ? 'border-red-300 focus:ring-red-500/20'
@@ -858,14 +763,13 @@ const SignUp: React.FC = () => {
                   )}
                 </div>
 
-                {/* Terms Agreement */}
                 <div className="pt-1">
                   <label className="flex items-start gap-2 cursor-pointer">
                     <div className="relative mt-0.5 flex-shrink-0">
                       <input
                         type="checkbox"
                         checked={formData.agreeToTerms}
-                        onChange={(e) => handleInputChange('agreeToTerms', e.target.checked)}
+                        onChange={e => handleInputChange('agreeToTerms', e.target.checked)}
                         className={`h-4 w-4 rounded border ${
                           validationErrors.agreeToTerms
                             ? 'border-red-300 text-red-600'
@@ -876,11 +780,11 @@ const SignUp: React.FC = () => {
                     <div className="flex-1 min-w-0">
                       <span className="text-xs text-gray-700">
                         I agree to the{' '}
-                        <Link to="/Terms" className="text-green-600 font-semibold hover:underline">
+                        <Link to="/terms" className="text-green-600 font-semibold hover:underline">
                           Terms & Conditions
                         </Link>{' '}
                         and{' '}
-                        <Link to="/Privacy" className="text-green-600 font-semibold hover:underline">
+                        <Link to="/privacy" className="text-green-600 font-semibold hover:underline">
                           Privacy Policy
                         </Link>
                       </span>
@@ -888,24 +792,21 @@ const SignUp: React.FC = () => {
                         <p className="text-xs text-red-600 flex items-center gap-1 mt-0.5">
                           <X size={10} />
                           {validationErrors.agreeToTerms}
-                      </p>
+                        </p>
                       )}
                     </div>
                   </label>
                 </div>
 
-                {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={isLoading || receiptUploading}
+                  disabled={isLoading || isStoringReceipt}
                   className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white font-bold py-3 rounded-lg shadow hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 flex items-center justify-center gap-1.5 min-h-[44px]"
                 >
-                  {isLoading || receiptUploading ? (
+                  {isLoading || isStoringReceipt ? (
                     <>
                       <Loader2 size={16} className="animate-spin" />
-                      <span className="text-sm">
-                        {receiptUploading ? 'Uploading...' : 'Processing...'}
-                      </span>
+                      <span className="text-sm">{isStoringReceipt ? 'Saving...' : 'Processing...'}</span>
                     </>
                   ) : (
                     <>
@@ -916,16 +817,14 @@ const SignUp: React.FC = () => {
                 </button>
               </form>
 
-              {/* Divider */}
               <div className="flex items-center my-4">
                 <div className="flex-1 border-t border-gray-300"></div>
                 <span className="px-3 text-xs text-gray-500 font-medium">Already have an account?</span>
                 <div className="flex-1 border-t border-gray-300"></div>
               </div>
 
-              {/* Login Link */}
               <button
-                onClick={() => navigate('/Login')}
+                onClick={() => navigate('/login')}
                 className="w-full border border-gray-300 text-gray-700 font-bold py-2.5 rounded-lg hover:border-green-500 hover:text-green-600 hover:bg-green-50 transition-all duration-200 min-h-[44px]"
               >
                 Sign In Instead
@@ -933,7 +832,6 @@ const SignUp: React.FC = () => {
             </div>
           </div>
 
-          {/* Security Footer */}
           <div className="bg-gradient-to-r from-white/80 to-white/60 backdrop-blur-sm rounded-lg border border-gray-200/60 p-3">
             <div className="flex items-center justify-center gap-4">
               <div className="flex flex-col items-center">
