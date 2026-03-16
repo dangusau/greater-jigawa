@@ -5,6 +5,7 @@ import { createClient } from '@supabase/supabase-js';
 // No console messages, just silent failures.
 // ===============================
 
+// Comment out real Supabase client
 // const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 // const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
@@ -13,6 +14,9 @@ import { createClient } from '@supabase/supabase-js';
 // }
 
 // export const supabase = createClient(supabaseUrl, supabaseAnonKey)
+
+// Dummy export to satisfy imports (won't actually work)
+export const supabase = {} as any;
 
 // ========== TYPES ==========
 export interface UserProfile {
